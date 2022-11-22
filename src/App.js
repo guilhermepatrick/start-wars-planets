@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
+import Planet from './context/PlanetsProvider';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <span>Bora bill!</span>
+    <Planet>
+      <Home />
+    </Planet>
   );
 }
 
