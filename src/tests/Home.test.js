@@ -18,7 +18,7 @@ describe("Testando a Home", () => {
       () =>
         expect(screen.getByRole("button", { name: /x/i })).toBeInTheDocument(),
       { timeout: 3000 }
-    );
+    );    
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
     render(<App />);
@@ -39,5 +39,54 @@ describe("Testando a Home", () => {
         expect(screen.getAllByRole("cell")[0]).toHaveTextContent("Coruscant"),
       { timeout: 3000 }
     );
+  });
+  it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    render(<App />);
+    userEvent.click(screen.getByTestId("button-filter"));    
+    userEvent.click(screen.getByRole("button", { name: /remover filtragens/i })); 
+    await waitFor(
+      () =>
+        expect(
+          screen.getByRole("cell", { name: /tatooine/i })
+        ).toBeInTheDocument(),
+      { timeout: 3000 }
+    );   
+  });
+  it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    render(<App />);
+    userEvent.click(screen.getByTestId("button-filter"));    
+    userEvent.click(screen.getByRole("button", { name: /x/i })),
+    await waitFor(
+      () =>
+      expect(
+          screen.getByRole("cell", { name: /dagobah/i })).toBeInTheDocument(),
+      { timeout: 3000 }
+    );   
+  });
+  it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    render(<App />);
+    userEvent.selectOptions(screen.getAllByRole('combobox')[1], ['menor que'])
+    userEvent.click(screen.getByTestId("button-filter"))
+    userEvent.click(screen.getByRole("button", { name: /x/i }));   
+    await waitFor(
+      () =>
+        expect(
+          screen.getByRole("cell", { name: /tatooine/i })
+        ).toBeInTheDocument(),
+      { timeout: 3000 }
+    );   
+  });
+  it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    render(<App />);
+    userEvent.selectOptions(screen.getAllByRole('combobox')[1], ['igual a'])
+    userEvent.click(screen.getByTestId("button-filter"))
+    userEvent.click(screen.getByRole("button", { name: /x/i }));   
+    await waitFor(
+      () =>
+        expect(
+          screen.getByRole("cell", { name: /tatooine/i })
+        ).toBeInTheDocument(),
+      { timeout: 3000 }
+    );   
   });
 });
