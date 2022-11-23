@@ -7,7 +7,13 @@ export default function Planet({ children }) {
   const [filterByName, setFilterByName] = useState('');
   const [filteredPlanets, setFilteredPlanets] = useState([]);
   const [filteredPlanetsByName, setFilterPlanetByName] = useState([]);
-  // const [filtersOptions, setFilterOptions] = useState([]);
+  const [filtersOptions, setFilterOptions] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
   const [filters, setFilters] = useState({ filterByNumericValues: [] });
 
   useEffect(() => {
@@ -23,13 +29,19 @@ export default function Planet({ children }) {
     filterArr.forEach((filter) => {
       const { column, comparison } = filter;
       if (comparison === 'maior que') {
-        planetForEach = planetForEach.filter((el) => el[column] > +filter.value);
+        planetForEach = planetForEach.filter(
+          (el) => el[column] > +filter.value,
+        );
       }
       if (comparison === 'menor que') {
-        planetForEach = planetForEach.filter((el) => el[column] < +filter.value);
+        planetForEach = planetForEach.filter(
+          (el) => el[column] < +filter.value,
+        );
       }
       if (comparison === 'igual a') {
-        planetForEach = planetForEach.filter((el) => +el[column] === +filter.value);
+        planetForEach = planetForEach.filter(
+          (el) => +el[column] === +filter.value,
+        );
       }
     });
     setFilteredPlanets(planetForEach);
@@ -46,11 +58,13 @@ export default function Planet({ children }) {
     () => ({
       filteredPlanetsByName,
       filterByName,
+      filters,
+      filtersOptions,
       setFilterByName,
       setFilters,
-      filters,
+      setFilterOptions,
     }),
-    [filteredPlanetsByName, filterByName, filters],
+    [filteredPlanetsByName, filterByName, filters, filtersOptions],
   );
 
   return (
