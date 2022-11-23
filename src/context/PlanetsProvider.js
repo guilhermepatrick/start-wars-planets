@@ -14,7 +14,7 @@ export default function Planet({ children }) {
     'rotation_period',
     'surface_water',
   ]);
-  const [filters, setFilters] = useState({ filterByNumericValues: [] });
+  const [filters, setFilters] = useState({ filterByNumericValues: [], filterBySort: [] });
 
   useEffect(() => {
     getPlanets().then((result) => {
