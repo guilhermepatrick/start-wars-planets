@@ -181,7 +181,6 @@ function FilterForm() {
           />
           Descendente
         </label>
-
         <button
           type="button"
           onClick={ submitSort }
