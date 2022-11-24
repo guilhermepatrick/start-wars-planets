@@ -1,9 +1,14 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
+import mockPlanets from './mockPlanets';
 
-describe("Testando a Home", () => {
+describe("Testando a Home", () => {  
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     expect(screen.getAllByRole("columnheader")).toHaveLength(13);
     await waitFor(
@@ -21,6 +26,10 @@ describe("Testando a Home", () => {
     );    
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     userEvent.click(screen.getByRole("radio", { name: /ascendente/i }));
     userEvent.click(screen.getByRole("button", { name: /ordenar/i }));
@@ -31,6 +40,10 @@ describe("Testando a Home", () => {
     );
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     userEvent.click(screen.getByRole("radio", { name: /descendente/i }));
     userEvent.click(screen.getByRole("button", { name: /ordenar/i }));
@@ -41,6 +54,10 @@ describe("Testando a Home", () => {
     );
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     userEvent.click(screen.getByTestId("button-filter"));    
     userEvent.click(screen.getByRole("button", { name: /remover filtragens/i })); 
@@ -53,6 +70,10 @@ describe("Testando a Home", () => {
     );   
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     userEvent.click(screen.getByTestId("button-filter"));    
     userEvent.click(screen.getByRole("button", { name: /x/i })),
@@ -64,6 +85,10 @@ describe("Testando a Home", () => {
     );   
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     userEvent.selectOptions(screen.getAllByRole('combobox')[1], ['menor que'])
     userEvent.click(screen.getByTestId("button-filter"))
@@ -77,6 +102,10 @@ describe("Testando a Home", () => {
     );   
   });
   it("Verifica se a Tabela é Renderizada Corretamente", async () => {
+    jest.spyOn(global, "fetch");
+      global.fetch.mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockPlanets),
+      });
     render(<App />);
     userEvent.selectOptions(screen.getAllByRole('combobox')[1], ['igual a'])
     userEvent.click(screen.getByTestId("button-filter"))
