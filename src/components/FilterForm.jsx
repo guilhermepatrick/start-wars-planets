@@ -27,6 +27,7 @@ function FilterForm() {
   }
 
   function handleClick() {
+    console.log(setFilterOptions);
     const filterObj = {
       column: inputValues.columnFilter,
       comparison: inputValues.comparisonFilter,
